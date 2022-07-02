@@ -9,6 +9,5 @@ import javax.sql.DataSource;
 public class BatchConfig extends DefaultBatchConfigurer {
     @Override
     public void setDataSource(DataSource dataSource) {
-        // 何もしない。
     }
 }

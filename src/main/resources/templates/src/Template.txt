@@ -1,0 +1,7 @@
+package [# th:utext="${package}" /];
+
+public class [# th:utext="${model.tableName}" /] {
+[# th:each="column : ${model.colums}"]
+    public [# th:utext="${column.key}" /] [# th:utext="${column.value}" /];
+[/]
+}

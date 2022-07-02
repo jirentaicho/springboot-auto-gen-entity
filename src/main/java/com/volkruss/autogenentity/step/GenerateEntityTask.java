@@ -1,5 +1,6 @@
 package com.volkruss.autogenentity.step;
 
+import com.volkruss.autogenentity.model.GenModel;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.scope.context.ChunkContext;
@@ -11,13 +12,18 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @StepScope
-public class SampleTask implements Tasklet {
+public class GenerateEntityTask implements Tasklet {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private GenClass genClass;
 
 
     @Override
@@ -26,19 +32,24 @@ public class SampleTask implements Tasklet {
         DatabaseMetaData metaData = dataSource.getConnection().getMetaData();
         ResultSet tables = metaData.getTables(null, null, null, new String[] { "TABLE" });
 
+        List<GenModel> models = new ArrayList<>();
+
         while (tables.next()) {
-            // ここでEntityクラスの情報を作成する
             String tableName=tables.getString("TABLE_NAME");
-            System.out.println(tableName);
             ResultSet columns = metaData.getColumns(null,  null,  tableName, "%");
+
+            GenModel genModel = new GenModel(tableName);
+
             while (columns.next()) {
                 String columnName=columns.getString("COLUMN_NAME");
-                System.out.println("\t" + columnName);
+                String dataType = columns.getString("DATA_TYPE");
+                genModel.addColumnInfo(dataType,columnName);
             }
+            models.add(genModel);
         }
 
-        System.out.println("あ");
-        return RepeatStatus.FINISHED;
+        this.genClass.generateClass(models);
 
+        return RepeatStatus.FINISHED;
     }
 }

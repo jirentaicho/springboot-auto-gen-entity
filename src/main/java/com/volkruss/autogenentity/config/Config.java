@@ -1,6 +1,6 @@
 package com.volkruss.autogenentity.config;
 
-import com.volkruss.autogenentity.step.SampleTask;
+import com.volkruss.autogenentity.step.GenerateEntityTask;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -17,11 +17,11 @@ public class Config {
 
     private final StepBuilderFactory stepBuilderFactory;
 
-    private final SampleTask sampleTask;
+    private final GenerateEntityTask sampleTask;
 
     public Config(JobBuilderFactory jobBuilderFactory,
                   StepBuilderFactory stepBuilderFactory,
-                  SampleTask sampleTask){
+                  GenerateEntityTask sampleTask){
         this.jobBuilderFactory = jobBuilderFactory;
         this.stepBuilderFactory = stepBuilderFactory;
         this.sampleTask = sampleTask;
