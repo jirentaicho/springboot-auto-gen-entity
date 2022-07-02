@@ -1,7 +1,14 @@
 package [# th:utext="${package}" /];
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="[# th:utext="${model.planeTableName()}" /]")
 public class [# th:utext="${model.tableName}" /] {
 [# th:each="column : ${model.colums}"]
+    @Column(name="[# th:utext="${column.value}" /]")
     public [# th:utext="${column.key}" /] [# th:utext="${column.value}" /];
 [/]
 }
