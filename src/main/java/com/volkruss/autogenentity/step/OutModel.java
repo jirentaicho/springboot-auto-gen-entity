@@ -10,4 +10,6 @@ public class OutModel {
     public String planeTableName(){
         return this.tableName.toLowerCase();
     }
+
+
 }
