@@ -1,6 +1,7 @@
-package com.volkruss.autogenentity.step;
+package com.volkruss.autogenentity.logic;
 
 import com.volkruss.autogenentity.config.JavaClassPair;
+import com.volkruss.autogenentity.logic.GenerateJavaFile;
 import com.volkruss.autogenentity.model.GenModel;
 import com.volkruss.autogenentity.model.OutModel;
 import org.springframework.beans.factory.annotation.Autowired;

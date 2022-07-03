@@ -1,6 +1,7 @@
 package com.volkruss.autogenentity.step;
 
-import com.volkruss.autogenentity.hoge.CreateModelList;
+import com.volkruss.autogenentity.logic.CreateModelList;
+import com.volkruss.autogenentity.logic.GenClass;
 import com.volkruss.autogenentity.model.GenModel;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.StepScope;

@@ -1,4 +1,4 @@
-package com.volkruss.autogenentity.step;
+package com.volkruss.autogenentity.logic;
 
 import com.volkruss.autogenentity.config.GenProperties;
 import com.volkruss.autogenentity.model.OutModel;

@@ -1,4 +1,4 @@
-package com.volkruss.autogenentity.hoge;
+package com.volkruss.autogenentity.logic;
 
 import com.volkruss.autogenentity.model.GenModel;
 import org.springframework.beans.factory.annotation.Autowired;
