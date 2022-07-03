@@ -1,4 +1,4 @@
-package com.volkruss.autogenentity.step;
+package com.volkruss.autogenentity.model;
 
 import java.util.HashMap;
 import java.util.Map;

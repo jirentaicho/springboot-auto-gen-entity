@@ -1,5 +1,6 @@
 package com.volkruss.autogenentity.step;
 
+import com.volkruss.autogenentity.hoge.CreateModelList;
 import com.volkruss.autogenentity.model.GenModel;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -10,9 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -25,28 +23,14 @@ public class GenerateEntityTask implements Tasklet {
     @Autowired
     private GenClass genClass;
 
+    @Autowired
+    private CreateModelList createModelList;
+
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 
-        DatabaseMetaData metaData = dataSource.getConnection().getMetaData();
-        ResultSet tables = metaData.getTables(null, null, null, new String[] { "TABLE" });
-
-        List<GenModel> models = new ArrayList<>();
-
-        while (tables.next()) {
-            String tableName=tables.getString("TABLE_NAME");
-            ResultSet columns = metaData.getColumns(null,  null,  tableName, "%");
-
-            GenModel genModel = new GenModel(tableName);
-
-            while (columns.next()) {
-                String columnName=columns.getString("COLUMN_NAME");
-                String dataType = columns.getString("DATA_TYPE");
-                genModel.addColumnInfo(dataType,columnName);
-            }
-            models.add(genModel);
-        }
+        List<GenModel> models = this.createModelList.getGenModels();
 
         this.genClass.generateClass(models);
 

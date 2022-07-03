@@ -1,6 +1,7 @@
 package com.volkruss.autogenentity.step;
 
 import com.volkruss.autogenentity.config.GenProperties;
+import com.volkruss.autogenentity.model.OutModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;

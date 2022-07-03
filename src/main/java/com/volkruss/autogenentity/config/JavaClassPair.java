@@ -1,4 +1,4 @@
-package com.volkruss.autogenentity.step;
+package com.volkruss.autogenentity.config;
 
 import java.util.Map;
 import java.util.Objects;
